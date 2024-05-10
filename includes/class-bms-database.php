@@ -85,14 +85,13 @@
             return $wpdb->query($query);
         }
 
-        function insert_note(borrower_id, $note)
+        function insert_note($borrower_id, $note)
         {
             global $wpdb;
 
             $table_name = $this->notes_table_name;
 
-            $query = "INSERT INTO `$table_name` (`BRID`, `note`)
-            VALUES ('borrower_id', '$note');";
+            $query = "INSERT INTO `$table_name` (`BRID`, `note`) VALUES ('$borrower_id', '$note');";
 
             return $wpdb->query($query);
         }
@@ -103,7 +102,7 @@
 
             $table_name = $this->borrower_table_name;
 
-            $query = "select count(NID) as note_count from `$table_name` where BRID= '$borrower_id';"
+            $query = "select count(NID) as note_count from `$table_name` where BRID= '$borrower_id';";
 
             $results = $wpdb->get_results( $query );
 
